@@ -79,7 +79,7 @@
         /* --- Sessions --- */
         .t-row { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 35px 20px; border-bottom: 1px solid #eee; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            padding: 30px 20px; border-bottom: 1px solid #eee; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             border-radius: 15px; margin-bottom: 10px; cursor: default;
         }
         .t-row:hover { 
@@ -96,11 +96,10 @@
         }
         .t-row:hover .badge { background: #fff; color: #000; }
 
-        /* --- FAQ Accordion --- */
-        .faq-item { border-bottom: 1px solid #eee; padding: 20px 0; cursor: pointer; }
-        .faq-q { font-weight: 800; font-size: 1.1rem; display: flex; justify-content: space-between; }
-        .faq-a { max-height: 0; overflow: hidden; transition: 0.4s; font-size: 1rem; color: var(--gray-m); }
-        .faq-item.active .faq-a { max-height: 150px; margin-top: 15px; }
+        /* --- Payment Section --- */
+        .payment-card { background: var(--gray-l); padding: 40px; border-radius: 25px; border: 1px solid var(--border); }
+        .pay-method { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-weight: 700; font-size: 1.1rem; }
+        .pay-dot { width: 10px; height: 10px; background: var(--fg); border-radius: 50%; }
 
         /* --- Buttons --- */
         .btn { 
@@ -130,7 +129,7 @@
         <div class="nav-links">
             <a href="#how">Method</a>
             <a href="#timetable">Dates</a>
-            <a href="#contact">Contact</a>
+            <a href="#contact">Join</a>
         </div>
     </nav>
 
@@ -194,7 +193,7 @@
         <section id="timetable" class="fade-in">
             <div class="info-grid">
                 <div>
-                    <h2 class="s-title">Class Sessions</h2>
+                    <h2 class="s-title">Sessions</h2>
                     <div class="t-row">
                         <div>
                             <span class="t-day">Saturday</span>
@@ -210,28 +209,25 @@
                         <span class="badge" style="background:#eee;color:#000">Hebrew</span>
                     </div>
                 </div>
-                <div>
-                    <h2 class="s-title">Common Questions</h2>
-                    <div class="faq-item">
-                        <div class="faq-q">When and how do I pay? <span>+</span></div>
-                        <div class="faq-a">Payment must be made at least 1 day (24h) before the class starts to secure your spot. We accept <b>PayPal</b> or <b>PromptPay</b>.</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-q">How do I get the details? <span>+</span></div>
-                        <div class="faq-a">Once you contact us on Discord or Email, we will send you the specific payment info and meeting link.</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-q">What if I get stuck? <span>+</span></div>
-                        <div class="faq-a">This is a live class. Ask questions anytime and we'll help you fix your site instantly.</div>
-                    </div>
+                
+                <div class="payment-card">
+                    <h2 class="s-title" style="font-size: 1.5rem; margin-bottom: 20px;">Payment Information</h2>
+                    <div class="pay-method"><div class="pay-dot"></div> PayPal or PromptPay</div>
+                    <p style="font-size: 0.95rem; color: var(--gray-m); margin-bottom: 20px;">
+                        To secure your spot, payment must be made at least <b>1 day (24h) before</b> the session starts.
+                    </p>
+                    <p style="font-size: 0.85rem; color: var(--gray-m); border-top: 1px solid #ddd; pt-20; padding-top: 15px;">
+                        Contact us via Discord or Email to receive the payment link and meeting details.
+                    </p>
                 </div>
             </div>
+            <p style="text-align: center; margin-top: 40px; font-size: 0.85rem; color: var(--gray-m); font-weight: 600;">
+                If you have any questions about the process or during the call, feel free to ask.
+            </p>
         </section>
 
         <section id="contact" class="fade-in" style="text-align: center; border: none;">
             <h2 class="s-title" style="font-size: 3rem;">Secure Your Spot</h2>
-            <p style="margin-bottom: 30px; color: var(--gray-m);">Message us to receive the payment details and lock in your session.</p>
-            
             <div style="margin-bottom: 40px; font-weight: 700; font-size: 1.1rem;">
                 <p style="margin-bottom: 12px;">
                     <img src="gmail.png" class="c-icon" alt="">codewithai.class@gmail.com
@@ -240,7 +236,6 @@
                     <img src="discord.png" class="c-icon" alt="">codewithaisupport
                 </p>
             </div>
-            
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
                 <a href="mailto:codewithai.class@gmail.com?subject=Website Class Enrollment" class="btn">Email to Enroll</a>
                 <a href="#" class="btn btn-o" onclick="alert('Discord: codewithaisupport')">Message Discord</a>
@@ -258,11 +253,6 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // FAQ Toggle
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => item.classList.toggle('active'));
-        });
     </script>
 </body>
 </html>

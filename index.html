@@ -3,254 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeWithAI | Master AI in 1 Hour</title>
+    <title>CodeWithAI | Build your first AI Site</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --bg: #ffffff;
             --fg: #000000;
-            --gray: #757575;
-            --light-gray: #f2f2f2;
-            --border: #e0e0e0;
+            --gray-alt: #f9f9f9;
+            --accent: #000000;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        html { scroll-behavior: smooth; }
         body { 
             font-family: 'Inter', sans-serif; 
             background: var(--bg); 
             color: var(--fg);
-            overflow-x: hidden;
+            line-height: 1.5;
         }
+
+        /* --- Global Elements --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 100px 0; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: 1s all ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         /* --- Navigation --- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(10px);
+            padding: 30px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
         }
-        .nav-logo { font-weight: 900; letter-spacing: -1px; font-size: 1.2rem; }
-        .nav-links a { text-decoration: none; color: var(--fg); margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
-
+        .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; }
+        
         /* --- Hero --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-        .hero h1 { 
-            font-size: clamp(3.5rem, 8vw, 6rem); 
-            font-weight: 900; 
-            letter-spacing: -0.06em; 
-            line-height: 0.9;
-            margin-bottom: 25px;
-        }
-        .hero p { font-size: 1.4rem; font-weight: 300; max-width: 600px; margin-bottom: 40px; color: var(--gray); }
+        .hero { text-align: center; padding: 140px 0 100px; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 900; letter-spacing: -0.06em; line-height: 0.85; margin-bottom: 30px; }
+        .hero p { font-size: 1.4rem; color: #666; max-width: 600px; margin: 0 auto 40px; font-weight: 300; }
 
-        /* --- Sections --- */
-        section { padding: 120px 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { font-size: 3rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 50px; text-align: center; }
-
-        /* --- What You'll Build (Wireframe Design) --- */
-        .build-preview {
-            background: var(--fg);
-            color: var(--bg);
-            border-radius: 20px;
-            padding: 40px;
+        /* --- The "100x" Roadmap --- */
+        .roadmap {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            align-items: center;
-            text-align: left;
+            margin-top: 60px;
         }
-        .wireframe {
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 20px;
-            background: #111;
-        }
-        .wf-line { height: 10px; background: #333; margin-bottom: 10px; border-radius: 5px; }
-        .wf-btn { height: 30px; width: 80px; background: var(--bg); border-radius: 5px; }
+        .step { text-align: left; border-left: 2px solid #000; padding-left: 25px; }
+        .step-num { font-weight: 900; font-size: 0.8rem; text-transform: uppercase; color: #999; margin-bottom: 10px; display: block; }
+        .step h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
 
-        /* --- Upgraded Table --- */
-        .large-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 50px;
-            font-size: 1.5rem;
-        }
-        .large-table th { 
-            text-align: left; 
-            padding: 20px; 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            color: var(--gray);
-            border-bottom: 2px solid var(--fg);
-        }
-        .large-table td { padding: 40px 20px; border-bottom: 1px solid var(--border); font-weight: 600; }
-        .status-badge { 
-            background: var(--fg); color: var(--bg); 
-            padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; 
-        }
-
-        /* --- Contact --- */
-        .contact-card {
-            background: var(--light-gray);
+        /* --- Project Preview Box --- */
+        .preview-box {
+            background: #000;
+            color: #fff;
+            border-radius: 24px;
             padding: 60px;
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
         }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            font-weight: 600;
+        .chat-mockup {
+            background: #1a1a1a;
+            border-radius: 12px;
+            max-width: 400px;
+            margin: 30px auto 0;
+            padding: 20px;
+            text-align: left;
+            border: 1px solid #333;
         }
-        .contact-icon-img { width: 32px; height: 32px; object-fit: contain; }
+        .bubble { height: 12px; background: #333; border-radius: 6px; margin-bottom: 10px; width: 60%; }
+        .bubble.alt { width: 40%; background: #444; }
+
+        /* --- Massive Timetable --- */
+        .time-wrapper { margin-top: 40px; border-top: 4px solid #000; }
+        .time-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s;
+        }
+        .time-row:hover { padding-left: 20px; background: #fafafa; }
+        .time-day { font-size: 2rem; font-weight: 900; letter-spacing: -1px; }
+        .time-details { text-align: right; }
+        .tag { background: #000; color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
 
         /* --- Buttons --- */
-        .btn-group { display: flex; gap: 15px; margin-top: 20px; }
         .btn {
-            padding: 20px 40px;
-            background: var(--fg);
-            color: var(--bg);
+            padding: 20px 45px;
+            background: #000;
+            color: #fff;
             text-decoration: none;
-            border-radius: 100px;
             font-weight: 700;
-            transition: 0.3s;
-            display: flex;
+            border-radius: 100px;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .btn-outline { background: transparent; color: var(--fg); border: 2px solid var(--fg); }
-        .btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+        .btn:hover { transform: scale(1.05); }
+        .btn-outline { background: transparent; color: #000; border: 2px solid #000; }
+        .contact-icon { width: 20px; height: 20px; object-fit: contain; }
 
-        /* --- Animations --- */
-        .fade-in { opacity: 0; transform: translateY(40px); transition: 1s ease-out; }
-        .fade-in.active { opacity: 1; transform: translateY(0); }
-
+        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .build-preview { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3rem; }
-            .large-table { font-size: 1rem; }
+            .roadmap { grid-template-columns: 1fr; }
+            .time-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .hero h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo">CODEWITHAI</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#timetable">Schedule</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-
-    <section class="hero fade-in">
-        <h1>Build Your Own<br>AI Website</h1>
-        <p>No code. No fluff. Just a professional AI project finished in 60 minutes.</p>
-        <a href="#contact" class="btn">Get Started Now</a>
-    </section>
-
-    <section id="about" class="fade-in">
-        <h2 class="section-title">What You'll Build</h2>
-        <div class="build-preview">
-            <div class="wireframe">
-                <div class="wf-line" style="width: 40%"></div>
-                <div class="wf-line"></div>
-                <div class="wf-line" style="width: 80%; height: 60px; margin: 20px 0;"></div>
-                <div class="wf-btn"></div>
+    <div class="container">
+        <nav>
+            <div class="logo">CODEWITHAI</div>
+            <div class="nav-links">
+                <a href="#about" style="color: #000; text-decoration: none; font-size: 0.9rem; font-weight: 600;">How it works</a>
             </div>
-            <div>
-                <h3>A Real AI Platform</h3>
-                <p style="color: #aaa; margin-top: 15px;">We don't just talk about AI. You will leave the class with a live URL containing a functioning chatbot interface that uses your custom logic.</p>
+        </nav>
+
+        <section class="hero fade-in">
+            <h1>Zero Code.<br>Real AI.</h1>
+            <p>A fast-paced, 1-hour workshop where you build and launch your own AI chatbot website. Designed for absolute beginners.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#contact" class="btn">Enroll Now</a>
+                <a href="#timetable" class="btn btn-outline">Check Times</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="timetable" class="fade-in">
-        <h2 class="section-title">Schedule</h2>
-        <table class="large-table">
-            <thead>
-                <tr>
-                    <th>Session</th>
-                    <th>Language</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Saturday (18:00)</td>
-                    <td>English</td>
-                    <td><span class="status-badge">Registering</span></td>
-                </tr>
-                <tr>
-                    <td>Sunday (10:00)</td>
-                    <td>Hebrew</td>
-                    <td><span class="status-badge">Waitlist</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+        <section id="about" class="fade-in">
+            <h2 style="font-size: 2.5rem; margin-bottom: 50px; letter-spacing: -1px;">The 60-Minute Roadmap</h2>
+            <div class="roadmap">
+                <div class="step">
+                    <span class="step-num">01. Prompt</span>
+                    <h3>Generate</h3>
+                    <p>Use ChatGPT to architect your site logic without writing a single line of code.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">02. Design</span>
+                    <h3>Launch</h3>
+                    <p>Connect your AI to a modern interface that looks professional on any device.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">03. Share</span>
+                    <h3>Deploy</h3>
+                    <p>Get a live URL to show off your AI creation to friends and family instantly.</p>
+                </div>
+            </div>
+        </section>
 
-    <section id="contact" class="fade-in">
-        <div class="contact-card">
-            <h2 style="margin-bottom: 10px;">Ready to start?</h2>
-            <p style="margin-bottom: 40px;">Choose your preferred way to reach out.</p>
+        <section class="fade-in">
+            <div class="preview-box">
+                <h2 style="font-size: 2.5rem; letter-spacing: -1px;">Built in the Class</h2>
+                <p style="color: #888;">Example: The "AI Assistant" Project</p>
+                <div class="chat-mockup">
+                    <div class="bubble"></div>
+                    <div class="bubble alt"></div>
+                    <div style="height: 30px; background: #333; margin-top: 20px; border-radius: 4px; display: flex; align-items: center; padding: 0 10px;">
+                        <span style="font-size: 10px; color: #666;">Ask AI anything...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timetable" class="fade-in">
+            <h2 style="font-size: 2.5rem; letter-spacing: -1px;">Upcoming Classes</h2>
+            <div class="time-wrapper">
+                <div class="time-row">
+                    <div class="time-day">Saturday <span style="font-size: 1rem; color: #999; font-weight: 400;">18:00</span></div>
+                    <div class="time-details">
+                        <span class="tag">English</span>
+                        <div style="margin-top: 5px; font-weight: 700;">Open for Enrollment</div>
+                    </div>
+                </div>
+                <div class="time-row">
+                    <div class="time-day">Sunday <span style="font-size: 1rem; color: #999; font-weight: 400;">10:00</span></div>
+                    <div class="time-details">
+                        <span class="tag" style="background: #eee; color: #000;">Hebrew</span>
+                        <div style="margin-top: 5px; font-weight: 700; color: #999;">Coming Soon</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-in" style="text-align: center;">
+            <h2 style="font-size: 3rem; letter-spacing: -2px; margin-bottom: 20px;">Ready to build?</h2>
+            <p style="margin-bottom: 50px;">Direct support available via Email or Discord.</p>
             
-            <div class="contact-item">
-                <img src="gmail.png" class="contact-icon-img" alt="Gmail">
-                codewithai.class@gmail.com
-            </div>
-            <div class="contact-item">
-                <img src="discord.png" class="contact-icon-img" alt="Discord">
-                codewithaisupport
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="gmail.png" class="contact-icon" alt="">
+                    <span style="font-weight: 600;">codewithai.class@gmail.com</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="discord.png" class="contact-icon" alt="">
+                    <span style="font-weight: 600;">codewithaisupport</span>
+                </div>
             </div>
 
-            <div class="btn-group">
-                <a href="mailto:codewithai.class@gmail.com?subject=Enrollment" class="btn">
-                    Email Me
-                </a>
-                <a href="#" class="btn btn-outline" onclick="alert('Discord: codewithaisupport')">
-                    Discord
-                </a>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="mailto:codewithai.class@gmail.com?subject=Enrollment" class="btn">Email Me</a>
+                <a href="#" class="btn btn-outline" onclick="alert('Add me: codewithaisupport')">Discord</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer style="padding: 50px; text-align: center; border-top: 1px solid var(--border);">
-        <p style="font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;">© 2026 CODEWITHAI</p>
-    </footer>
+        <footer style="padding-bottom: 60px; text-align: center; color: #999; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;">
+            © 2026 CODEWITHAI
+        </footer>
+    </div>
 
     <script>
-        // Simple Scroll Animation
+        // Smooth reveal logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(section => observer.observe(section));
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

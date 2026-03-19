@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CSS Reset & Base Styles --- */
         :root {
             --bg-color: #ffffff;
             --text-color: #000000;
@@ -19,15 +18,8 @@
             --gray-dark: #666666;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -37,16 +29,15 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- Layout & Typography --- */
         .container {
-            max-width: 800px;
+            max-width: 900px; /* Widened slightly for the larger table */
             margin: 0 auto;
             padding: 100px 20px;
             text-align: center;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(3rem, 6vw, 5rem); /* Made even bigger */
             font-weight: 800;
             letter-spacing: -0.05em;
             margin-bottom: 20px;
@@ -54,42 +45,28 @@
         }
 
         h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-            letter-spacing: -0.02em;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            letter-spacing: -0.03em;
         }
 
         p {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: var(--gray-dark);
             margin-bottom: 40px;
             font-weight: 300;
         }
 
-        /* --- Components --- */
-        .logo-container {
-            margin-bottom: 40px;
-        }
-
-        /* Placeholder style for the logo - replace src with your actual image */
-        .logo {
-            max-width: 150px;
-            height: auto;
-            display: inline-block;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        /* --- Buttons --- */
+        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
         .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 36px;
+            font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
             color: var(--bg-color);
@@ -99,79 +76,75 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-
         .btn-outline {
             background-color: transparent;
             color: var(--text-color);
         }
-
         .btn:hover {
-            transform: scale(1.05);
-            background-color: var(--gray-dark);
-            border-color: var(--gray-dark);
-            color: var(--bg-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .btn-outline:hover { background-color: var(--text-color); color: var(--bg-color); }
+
+        /* --- Icons --- */
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            /* If your icons are black, this filter makes them white on hover for the solid button */
+            transition: filter 0.3s ease; 
+        }
+        .btn:hover .contact-icon.invert-on-hover {
+            filter: invert(1);
         }
 
-        .btn-outline:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-        }
-
-        /* --- Table Styling --- */
+        /* --- Upgraded Timetable --- */
         .table-container {
             width: 100%;
             overflow-x: auto;
             margin-top: 20px;
+            border: 2px solid var(--text-color); /* Bold border */
+            border-radius: 8px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            margin-bottom: 40px;
         }
 
         th, td {
-            padding: 20px;
+            padding: 30px; /* Massively increased padding */
             border-bottom: 1px solid var(--gray-mid);
         }
 
         th {
-            font-weight: 600;
+            font-weight: 800;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            color: var(--gray-dark);
-        }
-
-        tbody tr {
-            transition: background-color 0.3s ease;
-        }
-
-        tbody tr:hover {
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            color: var(--text-color);
             background-color: var(--gray-light);
         }
+
+        td {
+            font-size: 1.4rem; /* Larger text for readability */
+            font-weight: 600;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr { transition: background-color 0.2s ease; }
+        tbody tr:hover { background-color: var(--gray-light); }
 
         .status-badge {
-            background-color: var(--gray-light);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--gray-mid);
-        }
-
-        /* --- Contact Info --- */
-        .contact-info {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            font-weight: 400;
-            color: var(--text-color);
-        }
-
-        .contact-info span {
-            display: block;
-            margin-bottom: 10px;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         /* --- Animations --- */
@@ -180,31 +153,20 @@
             transform: translateY(30px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--gray-mid);
-            color: var(--gray-dark);
-            font-size: 0.9rem;
-        }
+        footer { text-align: center; padding: 40px 20px; color: var(--gray-dark); font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <section id="hero" class="container fade-in">
-        <div class="logo-container">
-            <img src="logo.png" alt="CodeWithAI Logo" class="logo" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<h2 style=\'letter-spacing: 2px;\'>CodeWithAI</h2>');">
-        </div>
         <h1>Build Your Own AI Website</h1>
         <p>Learn to create real AI projects in 1 hour.</p>
-        <a href="#contact" class="btn">Contact to Join</a>
+        <div class="btn-group">
+            <a href="#contact" class="btn">Enroll Now</a>
+            <a href="#timetable" class="btn btn-outline">View Schedule</a>
+        </div>
     </section>
 
     <section id="about" class="container fade-in">
@@ -245,15 +207,18 @@
     </section>
 
     <section id="contact" class="container fade-in">
-        <h2>Contact</h2>
-        <div class="contact-info">
-            <span><strong>Email:</strong> codewithai.class@gmail.com</span>
-            <span><strong>Discord:</strong> codewithaisupport</span>
-        </div>
+        <h2>Get in Touch</h2>
+        <p>Have questions before joining? Reach out directly.</p>
         
         <div class="btn-group">
-            <a href="mailto:codewithai.class@gmail.com?subject=AI Class" class="btn">Email Me</a>
-            <a href="#" class="btn btn-outline" onclick="alert('Add me on Discord: codewithaisupport')">Message on Discord</a>
+            <a href="mailto:codewithai.class@gmail.com?subject=AI Class" class="btn">
+                <img src="gmail.png" alt="Email" class="contact-icon invert-on-hover">
+                Email Me
+            </a>
+            <a href="#" class="btn btn-outline" onclick="alert('Add me on Discord: codewithaisupport')">
+                <img src="discord.png" alt="Discord" class="contact-icon">
+                Message on Discord
+            </a>
         </div>
     </section>
 
@@ -263,23 +228,16 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Only animate once
+                        obs.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.15 });
 
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(el => observer.observe(el));
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
         });
     </script>
 </body>

@@ -39,7 +39,6 @@
         .hero h1 { font-size: clamp(2.8rem, 8vw, 4.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; margin-bottom: 20px; }
         .hero p { font-size: 1.2rem; color: var(--gray-m); max-width: 550px; margin: 0 auto 35px; }
 
-        /* --- Price Badge --- */
         .price-tag { 
             display: inline-block; background: var(--fg); color: var(--bg); 
             padding: 8px 20px; border-radius: 50px; font-weight: 800; 
@@ -69,16 +68,30 @@
         .step h3 { font-size: 1.3rem; margin-bottom: 10px; }
         .step p { font-size: 0.9rem; color: var(--gray-m); }
 
-        /* --- Project Preview --- */
+        /* --- Preview --- */
         .preview-mini { background: #000; border-radius: 20px; padding: 40px; color: white; margin-top: 40px; display: flex; align-items: center; gap: 40px; }
         .mockup { background: #111; flex: 1; padding: 20px; border-radius: 12px; border: 1px solid #333; min-width: 200px; }
         .m-line { height: 8px; background: #333; margin-bottom: 10px; border-radius: 4px; }
 
-        /* --- Timetable --- */
-        .t-row { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #eee; transition: 0.3s; }
-        .t-row:hover { padding-left: 15px; background: var(--gray-l); }
-        .t-day { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; }
-        .badge { background: #000; color: #fff; padding: 5px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+        /* --- ENLARGED SESSIONS AREA --- */
+        .t-row { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 35px 20px; border-bottom: 1px solid #eee; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            border-radius: 15px; margin-bottom: 10px;
+        }
+        .t-row:hover { 
+            background: var(--fg); color: var(--bg); 
+            transform: scale(1.02); padding-left: 30px;
+        }
+        .t-day { font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; }
+        .t-time { font-weight: 400; font-size: 1.2rem; opacity: 0.6; margin-left: 10px; }
+        .t-row:hover .t-time { opacity: 0.8; color: white; }
+        
+        .badge { 
+            background: #000; color: #fff; padding: 8px 16px; border-radius: 8px; 
+            font-size: 0.85rem; font-weight: 800; text-transform: uppercase; 
+        }
+        .t-row:hover .badge { background: #fff; color: #000; }
 
         /* --- FAQ Accordion --- */
         .faq-item { border-bottom: 1px solid #eee; padding: 20px 0; cursor: pointer; }
@@ -102,7 +115,8 @@
 
         @media (max-width: 768px) {
             .info-grid, .roadmap, .preview-mini { flex-direction: column; grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3rem; }
+            .t-row { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .t-day { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -119,7 +133,7 @@
 
     <div class="container">
         <section class="hero fade-in">
-            <div class="price-tag">Only 150 THB / $1.5 / ₪15</div>
+            <div class="price-tag">150 THB / $1.5 / ₪15</div>
             <h1>Zero Code.<br>Real AI Projects.</h1>
             <p>Master AI building in 1 hour. No experience needed. Just a computer and your curiosity.</p>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
@@ -177,13 +191,19 @@
         <section id="timetable" class="fade-in">
             <div class="info-grid">
                 <div>
-                    <h2 class="s-title">Upcoming Sessions</h2>
+                    <h2 class="s-title">Sessions</h2>
                     <div class="t-row">
-                        <div class="t-day">Saturday <span style="font-weight:400; font-size: 1rem; color:#999;">18:00</span></div>
+                        <div>
+                            <span class="t-day">Saturday</span>
+                            <span class="t-time">18:00</span>
+                        </div>
                         <span class="badge">English</span>
                     </div>
                     <div class="t-row">
-                        <div class="t-day">Sunday <span style="font-weight:400; font-size: 1rem; color:#999;">10:00</span></div>
+                        <div>
+                            <span class="t-day">Sunday</span>
+                            <span class="t-time">10:00</span>
+                        </div>
                         <span class="badge" style="background:#eee;color:#000">Hebrew</span>
                     </div>
                 </div>
@@ -195,7 +215,7 @@
                     </div>
                     <div class="faq-item">
                         <div class="faq-q">What if I get stuck? <span>+</span></div>
-                        <div class="faq-a">You can ask questions anytime during the live call; we fix it on the spot.</div>
+                        <div class="faq-a">Ask anything in the live call; we fix it on the spot.</div>
                     </div>
                 </div>
             </div>
@@ -203,6 +223,7 @@
 
         <section id="contact" class="fade-in" style="text-align: center; border: none;">
             <h2 class="s-title" style="font-size: 3rem;">Secure Your Spot</h2>
+            <p style="margin-bottom: 30px; color: var(--gray-m);">Message me directly to join the next class.</p>
             <div style="margin-bottom: 40px; font-weight: 700; font-size: 1.1rem;">
                 <p style="margin-bottom: 12px;">
                     <img src="gmail.png" class="c-icon" alt="">codewithai.class@gmail.com
@@ -212,8 +233,8 @@
                 </p>
             </div>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="mailto:codewithai.class@gmail.com?subject=Enroll" class="btn">Email to Join</a>
-                <a href="#" class="btn btn-o" onclick="alert('Add me on Discord: codewithaisupport')">Discord</a>
+                <a href="mailto:codewithai.class@gmail.com?subject=Enroll" class="btn">Email Me</a>
+                <a href="#" class="btn btn-o" onclick="alert('Discord: codewithaisupport')">Discord</a>
             </div>
         </section>
 
